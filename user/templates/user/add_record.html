@@ -17,7 +17,7 @@
         {% endfor %}
     {% endif %}
 
-    <h3 style="margin-top: 0">{% trans 'Add Policy' %}</h3>
+    <h3 style="margin-top: 0">{% trans 'Add Record' %}</h3>
     <form enctype="multipart/form-data" class="form-horizontal" method="post"
           action="{% url 'user:add_record' %}">
         {% csrf_token %}

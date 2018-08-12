@@ -15,11 +15,11 @@ class PolicyForm(forms.Form):
 
 class RecordForm(forms.Form):
     policy = forms.IntegerField(label='Policy No.')
-    data = forms.CharField(label='Data')
+    data = forms.CharField(label='Data',
+                           widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 6}),
+                           max_length=300,
+                           )
 
     class Meta:
         model = Record
         fields = ['policy', 'data']
-
-
-

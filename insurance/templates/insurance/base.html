@@ -32,11 +32,11 @@
             <ul class="list-unstyled components">
                 <p>Protected Sharing</p>
                 <li>
-                    <a href="#">View Record</a>
+                    <a href="{% url 'insurance:view_record' %}">View Record</a>
                 </li>
                 {% if user.is_authenticated %}
                     <li>
-                        <a href="#">Logout</a>
+                        <a href="{% url 'logout' %}">Logout</a>
                     </li>
                 {% endif %}
             </ul>

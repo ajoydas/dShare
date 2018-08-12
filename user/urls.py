@@ -11,6 +11,6 @@ urlpatterns = [
     url(r'add_receiver/(?P<pk>[0-9]+)$', views.add_receiver, name='add_receiver'),
     url(r'add_policy$', views.add_policy, name='add_policy'),
     url(r'add_record_policy/(?P<pk>[0-9]+)', views.add_record_policy, name='add_record_policy'),
-url(r'add_record$', views.add_record, name='add_record'),
-    url(r'view_record/(?P<pk>[0-9]+)$', views.view_record, name='view_record'),
+    url(r'add_record$', views.add_record, name='add_record'),
+    url(r'view_record$', views.view_record, name='view_record'),
 ]

@@ -36,7 +36,7 @@
                        class="dropdown-toggle">Policy</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#">Add Policy</a>
+                            <a href="{% url 'user:add_policy' %}">Add Policy</a>
                         </li>
                     </ul>
                 </li>
@@ -45,16 +45,16 @@
                        class="dropdown-toggle">Record</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="#">View Record</a>
+                            <a href="{% url 'user:view_record' %}">View Record</a>
                         </li>
                         <li>
-                            <a href="#">Add Record</a>
+                            <a href="{% url 'user:add_record' %}">Add Record</a>
                         </li>
                     </ul>
                 </li>
                 {% if user.is_authenticated %}
                     <li>
-                        <a href="#">Logout</a>
+                        <a href="{% url 'logout' %}">Logout</a>
                     </li>
                 {% endif %}
             </ul>

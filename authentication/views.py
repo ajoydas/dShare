@@ -26,6 +26,7 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
+                    print(str(user.profile.account_type)+" Logged in.")
                     login(request,user)
                     return redirect_user(request, user)
 
