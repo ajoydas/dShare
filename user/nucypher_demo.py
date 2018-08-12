@@ -53,6 +53,15 @@ label = b"secret/files/and/stuff"
 # Alice grants to Bob.
 BOB = Bob(known_nodes=(URSULA,), federated_only=True, always_be_learning=True)
 ALICE.start_learning_loop(now=True)
+
+import _pickle as pickle
+pickle.dump(ALICE, open('simple1.pkl', 'w'))
+
+del ALICE
+
+ALICE = pickle.load(open('simple1.pkl'))
+
+
 policy = ALICE.grant(BOB, label, m=m, n=n,
                      expiration=policy_end_datetime)
 

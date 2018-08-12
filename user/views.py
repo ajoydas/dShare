@@ -3,12 +3,27 @@ from django.shortcuts import render
 
 # Create your views here.
 from authentication.models import Policy, PolicyUsers, Record
+from user.crypto import get_alice, get_seed, get_bob
 from user.forms import PolicyForm, RecordForm
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+
+
+import binascii
+import datetime
+import logging
+import sys
+
+import maya
+
+from nucypher.characters import Alice, Bob, Ursula
+from nucypher.data_sources import DataSource
+# This is already running in another process.
+from nucypher.network.middleware import RestMiddleware
+from umbral.keys import UmbralPublicKey
 
 
 def profile(request):
@@ -37,6 +52,26 @@ def add_receiver(request, pk):
         else:
             poli_rec = PolicyUsers(policy=pk, user= receiver)
             poli_rec.save()
+
+            policy_end_datetime = maya.now() + datetime.timedelta(days=5)
+            m = 2
+            n = 3
+            label = poli_rec.policy.label.encode('UTF-8')
+
+            ALICE = get_alice()
+            BOB = get_bob()
+            alices_pubkey_bytes_saved_for_posterity = user.profile.public_key
+            policy = ALICE.grant(BOB, label, m=m, n=n,
+                                 expiration=policy_end_datetime)
+
+            BOB.join_policy(label,  # The label - he needs to know what data he's after.
+                            alices_pubkey_bytes_saved_for_posterity,
+                            # To verify the signature, he'll need Alice's public key.
+                            # He can also bootstrap himself onto the network more quickly
+                            # by providing a list of known nodes at this time.
+                            node_list=[("localhost", 3601)]
+                            )
+
 
             messages.add_message(request,
                                  messages.SUCCESS,
