@@ -1,0 +1,56 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Login{% endblock %}
+{% block header %}
+    <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+
+{% endblock %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="table-responsive">
+        <table id="datatable-keytable" class="table">
+            <thead>
+            <tr>
+                <th>Record Id</th>
+                <th>Policy Id</th>
+                <th>Policy Label</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                {% for record in record_list %}
+                    <tr>
+                        <td>{{ record.id }}</td>
+                        <td>{{ record.created_at }}</td>
+                        <td>{{ record.label }}</td>
+
+                        <td>
+                            <button onclick='location.href="{% url 'user:view_receiver' record.policy.id %}"'
+                                    type="button">View receiver
+                            </button>
+                            <button onclick='location.href="{% url 'user:add_receiver' record.policy.id %}"'
+                                    type="button">Add receiver
+                            </button>
+                            <button onclick='location.href="{% url 'user:add_record_policy' policy.policy.id %}"'
+                                    type="button">View Policy
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+
+
+    </script>
+{% endblock %}

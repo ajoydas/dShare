@@ -1,0 +1,6 @@
+django
+gunicorn
+whitenoise
+dj-static
+Unipath
+python-decouple

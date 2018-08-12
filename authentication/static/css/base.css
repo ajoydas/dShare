@@ -1,0 +1,24 @@
+.logout {
+  background-color : #ff7a24;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border-color: #ffffff;
+        float: right;
+    margin-bottom: 20px;
+
+}
+
+#mybutton {
+  bottom: 10px;
+  right: 20px;
+    margin-right: 20px;
+}
+
+.general_button {
+  background-color : #ff7a24;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 4px;
+  border-color: #ffffff;
+}

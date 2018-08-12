@@ -1,0 +1,36 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}Login{% endblock %}
+{% block header %}
+    <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+
+{% endblock %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <h3 style="margin-top: 0">{% trans 'Add Receiver to the policy no. : ' %}{{ policy }}</h3>
+    <form enctype="multipart/form-data" class="form-horizontal" method="post"
+          action="{% url 'user:add_record' %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+
+
+    </script>
+{% endblock %}
